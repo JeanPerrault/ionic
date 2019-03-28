@@ -3,9 +3,12 @@
       <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-    <ion-title>
-      Météo Application
+    <ion-title *ngIf="city">
+      Météo à {{ city }}
     </ion-title>
+    <ion-title *ngIf="!city">
+        Météo Application
+      </ion-title>
   </ion-toolbar>
 </ion-header>
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,20 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private router: Router) { }
+  city:string;
+
+  constructor(
+    private router: Router,
+    private storage: Storage
+    ) { }
+
+  /**
+   * quand on retourne sur la page home, on recharge
+   * la ville a partir du storage
+   */  
+  ionViewWillEnter(){
+    this.storage.get('city').then(c => this.city = c);
+  }
 
   navToAbout() {
     this.router.navigate(['/about']);
