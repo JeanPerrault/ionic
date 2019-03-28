@@ -1,14 +1,18 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color= primary>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
     <ion-title>
-      Mon Application
+      Météo Application
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="ion-padding">
-      <h1>Mon Application</h1>
-    Voici ma super Application
+    <p>Une application pour voir la météo</p>
+    <ion-button (click)="navToAbout()" expand="block" color="primary">Voir</ion-button>
   </div>
+  
 </ion-content>
