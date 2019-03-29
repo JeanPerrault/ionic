@@ -1,21 +1,49 @@
 <ion-header>
-  <ion-toolbar color= primary>
+    <ion-toolbar color="primary">
       <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-    <ion-title *ngIf="city">
-      Météo à {{ city }}
-    </ion-title>
-    <ion-title *ngIf="!city">
-        Météo Application
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title *ngIf="city">
+        Météo à {{ city }}
       </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <div class="ion-padding">
-    <p>Une application pour voir la météo</p>
-    <ion-button (click)="navToAbout()" expand="block" color="primary">Voir</ion-button>
-  </div>
+      <ion-title *ngIf="!city">
+        Météo application
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
   
-</ion-content>
+  <ion-content padding>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" offset="3" class="ion-text-center">
+          <h2>{{ city }}</h2>
+          <div *ngIf="meteo.image">
+            <img [src]="meteo.image" [alt]="city">
+            <h3>Température</h3>
+            <h1>{{ meteo.temperature }} &deg;C</h1>
+          </div>
+          <div *ngIf="meteo.error">
+            <h2>Il y a une erreur.</h2>
+          </div>
+          <div *ngIf="!city">
+            <h1>Vous devez choisir une ville.</h1>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-list>
+      <ion-item *ngFor="let day of days">
+        <ion-avatar>
+          <img src="{{ day.icon_big }}">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ day.day_long }}</h2>
+          <h3>{{ day.date }}</h3>
+        </ion-label>
+        <ion-note>
+          Entre {{ day.tmin }}° et {{ day.tmax }}°
+        </ion-note>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  
